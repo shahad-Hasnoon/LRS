@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm Booking</title>
+    <link rel="stylesheet" href="../CSS/confirm-booking.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+   <div id="confirmationPopup" class="popup-overlay">
+  <div class="popup-box-modern">
+    
+    <div class="success-icon">
+      <i class="bi bi-check-circle-fill"></i>
+    </div>
+
+    <h2>Booking Confirmed</h2>
+
+    <div class="booking-summary">
+      <p><span>Truck:</span> <span id="popupTruck">---</span></p>
+<p><span>Date:</span> <span id="popupDate">---</span></p>
+<p><span>Route:</span> <span id="popupRoute">---</span></p>
+<p><span>Price:</span> <span id="popupPrice">---</span></p>
+<p id="popupStatus" class="status pending">Pending</p>
+    </div>
+
+    <div class="popup-actions">
+      <button class="btn-primary" onclick="goBackToAdvertising()">
+  Back to Advertising
+</button>
+    </div>
+
+  </div>
+</div>
+      </div>
+    </div>
+
+    <main class="confirm-page">
+      <div class="top-back-bar">
+        <button class="back-btn" onclick="goBackToAdvertising()">
+          <i class="bi bi-arrow-left"></i>
+          Back
+        </button>
+      </div>
+
+      <section class="confirm-main">
+        <div class="confirm-container modern-confirm">
+          <div class="booking-header">
+            <div class="booking-badge">Booking</div>
+            <h2 class="confirm-title" id="displayAdName">Loading Ad...</h2>
+            <p class="confirm-subtitle">
+  Review the available capacity, calculate the price, then confirm
+  your booking or chat with the owner for questions.
+</p>
+          </div>
+
+          <div class="booking-summary-card">
+            <div class="summary-item">
+              <span class="summary-label">Route</span>
+              <span class="summary-value" id="bookingRoute">Loading...</span>
+            </div>
+
+            <div class="summary-item">
+              <span class="summary-label">Truck ID</span>
+              <span class="summary-value" id="bookingTruckId">---</span>
+            </div>
+
+            <div class="summary-item">
+              <span class="summary-label">Base Price</span>
+              <span class="summary-value" id="bookingBasePrice">SAR 0</span>
+            </div>
+
+            <div class="summary-item">
+              <span class="summary-label">Available Capacity</span>
+              <span class="summary-value" id="availableCapacity">---</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label id="rentedCapacityTitle">Required Capacity</label>
+            <div class="input-group">
+              <input
+                type="number"
+                id="rentedCapacity"
+                placeholder="Enter capacity"
+              />
+              <button type="button" class="calc-btn" onclick="updatePrice()">
+                <i class="bi bi-check-lg"></i>
+              </button>
+            </div>
+            <div id="rentedCapacityError" class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Estimated Price</label>
+            <div id="finalPrice" class="price-display">SAR 0</div>
+          </div>
+
+          <div class="confirm-actions">
+            <button class="confirm-btn-modern" onclick="submitBooking()">
+              <i class="bi bi-check2-circle"></i>
+              Confirm Booking
+            </button>
+
+            <button class="negotiation-btn-modern" onclick="openChat()">
+  <i class="bi bi-chat-dots"></i>
+  Ask Owner
+</button>
+          </div>
+          <div id="bookingActionError" class="action-error-message"></div>
+        </div>
+
+        <div id="chatOverlay" class="side-chat-container">
+          <div class="chat-box">
+            <div class="chat-header">
+              <div class="chat-header-left">
+                <div class="chat-avatar">
+                  <i class="bi bi-person-workspace"></i>
+                </div>
+                <div>
+                  <span class="chat-title">Chat with Owner</span>
+                  <p class="chat-subtitle">Ask about the truck before confirming your booking</p>
+                </div>
+              </div>
+
+              <button onclick="closeChat()" class="chat-close">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+            <div class="chat-body" id="chatBody">
+              <div class="chat-day-label">Today</div>
+            </div>
+
+            <div class="chat-input-area">
+              <div class="chat-input-wrap">
+                <input
+                  type="text"
+                  id="chatMessageInput"
+                  placeholder="Type your message..."
+                />
+                <i class="bi bi-chat-left-text chat-input-icon"></i>
+              </div>
+              <button onclick="sendMessage()">Send</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../JavaScript/Booking.js"></script>
+  </body>
+</html>
